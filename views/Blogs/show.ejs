@@ -1,0 +1,25 @@
+<%- include('../partials/header') %>
+
+<div class="ui main text container segment">
+    <div class="ui huge header"><%= blog.title %> <div style="font-style: italic !important; font-size:medium !important;">by <%= blog.author.username%></div></div>
+    <div class="ui top attached">
+        <div class="item">
+            <img class="ui centred rounded image" src="<%=blog.image%>">
+            <div class="content">
+                <span><%= blog.created.toDateString() %></span>
+                <!-- toDateString() changes bad looking date in displayable date -->
+            </div>
+            <div class="description segment">
+                <p><%-blog.body%></p>  
+                  <!-- use " - "" insted of " = " this does not straight away prints the text but recognize the HTML tags and evaluates -->
+            </div>
+            <% if(blog.author.username == currentUser.username){ %>
+            <a class="ui red basic button" href="/blogs/<%=blog._id%>/edit">Edit</a>
+            <form id="delete" action="/blogs/<%=blog._id%>?_method=DELETE" method="POST">
+                <button class="ui red basic button">Delete</button>
+            </form>
+            <% } %>
+        </div>
+    </div>
+</div>
+<%- include('../partials/footer') %>
