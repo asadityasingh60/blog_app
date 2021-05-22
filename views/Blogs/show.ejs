@@ -13,7 +13,7 @@
                 <p><%-blog.body%></p>  
                   <!-- use " - "" insted of " = " this does not straight away prints the text but recognize the HTML tags and evaluates -->
             </div>
-            <% if(blog.author.username == currentUser.username){ %>
+            <% if( currentUser && blog.author.username == currentUser.username){ %>
             <a class="ui red basic button" href="/blogs/<%=blog._id%>/edit">Edit</a>
             <form id="delete" action="/blogs/<%=blog._id%>?_method=DELETE" method="POST">
                 <button class="ui red basic button">Delete</button>
